@@ -1,0 +1,2 @@
+1.comment utiliser la un descripteur de fichier (fd)
+2.comment utiliser read et malloc et free 
