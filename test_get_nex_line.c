@@ -6,7 +6,7 @@
 /*   By: mnshimiy <mnshimiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 09:33:03 by mnshimiy          #+#    #+#             */
-/*   Updated: 2023/01/06 14:28:39 by mnshimiy         ###   ########.fr       */
+/*   Updated: 2023/01/10 12:42:10 by mnshimiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,19 @@
 char	*get_next_line(int fd)
 {
 	char		*buff;
+	int			i;
 
+	i = 0;
 	buff = (char *)malloc (BUFFER_SIZE + 1 * sizeof(char));
 	while (0 < read(fd, buff, BUFFER_SIZE))
 	{
-
+		
+		i++;
 	}
 	return (buff);
 }
 
-int main()
+int	main(void)
 {
 	char *str;
 
