@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test_get_nex_line.c                                :+:      :+:    :+:   */
+/*   octbyoct.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mnshimiy <mnshimiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/03 09:33:03 by mnshimiy          #+#    #+#             */
-/*   Updated: 2023/01/17 14:52:56 by mnshimiy         ###   ########.fr       */
+/*   Created: 2023/01/17 12:00:49 by mnshimiy          #+#    #+#             */
+/*   Updated: 2023/01/19 09:37:31 by mnshimiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <fcntl.h>
 #include <stdio.h>
 #include <stdlib.h>
-#define BUFFER_SIZE 2
+#define BUFFER_SIZE 1
 
 size_t	ft_strlen(const char *s)
 {
@@ -95,32 +95,21 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	return (c_s1);
 }
 
-
-char	*get_next_line(int fd)
+char	*get_next_line(fd)
 {
-	char		*buff;
-	char		*str;
-	char		*tallstr;
-	int			i;
+	char	*buff;
+	char	*str;
+	int		i;
 
-	buff = (char *)malloc(BUFFER_SIZE + 1 * sizeof(char));
-	str = (char *)malloc (BUFFER_SIZE + 1 * sizeof(char));
-	tallstr = (char *)malloc(BUFFER_SIZE * sizeof(char));
 	i = 0;
-	while (0 < read(fd, buff, BUFFER_SIZE))
+	buff = (char *)malloc(sizeof(char) * BUFFER_SIZE + 1);
+	str = (char *)malloc(sizeof(char) * BUFFER_SIZE + 1);
+	while (read(fd, buff, BUFFER_SIZE) && *buff != '\n')
 	{
-		i = 0;
-		str[0] = '\0';
-		while (i < BUFFER_SIZE)
-		{
-			str[i] = buff[i];
-			i++;
-			ft_strjoin(tallstr, str);
-			if (buff[i] == '\n')
-				return (tallstr);
-		}
+		str = ft_strjoin(str, buff);
 	}
-	return ("don't work");
+	printf("%s\n", str);
+	return (str);
 }
 
 int	main(void)
@@ -129,8 +118,7 @@ int	main(void)
 	int		fd;
 
 	fd = 0;
-	fd = open("filetest.txt", O_RDONLY);
+	fd = open("note.txt", O_RDONLY);
 	str = get_next_line(fd);
 	printf("%s", str);
 }
-
