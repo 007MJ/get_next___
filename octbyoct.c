@@ -6,7 +6,7 @@
 /*   By: mnshimiy <mnshimiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 12:00:49 by mnshimiy          #+#    #+#             */
-/*   Updated: 2023/01/19 09:37:31 by mnshimiy         ###   ########.fr       */
+/*   Updated: 2023/01/23 12:30:31 by mnshimiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <fcntl.h>
 #include <stdio.h>
 #include <stdlib.h>
-#define BUFFER_SIZE 1
+#define BUFFER_SIZE 2
 
 size_t	ft_strlen(const char *s)
 {
@@ -97,19 +97,21 @@ char	*ft_strjoin(char const *s1, char const *s2)
 
 char	*get_next_line(fd)
 {
-	char	*buff;
+	static char	*buff;
 	char	*str;
 	int		i;
 
 	i = 0;
 	buff = (char *)malloc(sizeof(char) * BUFFER_SIZE + 1);
 	str = (char *)malloc(sizeof(char) * BUFFER_SIZE + 1);
-	while (read(fd, buff, BUFFER_SIZE) && *buff != '\n')
+	while (read(fd, buff, BUFFER_SIZE))
 	{
 		str = ft_strjoin(str, buff);
+		if (*buff == '\n')
+			return (str);
 	}
-	printf("%s\n", str);
-	return (str);
+	//printf("%s\n", str);
+	return(NULL);
 }
 
 int	main(void)
@@ -117,8 +119,12 @@ int	main(void)
 	char	*str;
 	int		fd;
 
-	fd = 0;
+	// fd = 0;
 	fd = open("note.txt", O_RDONLY);
-	str = get_next_line(fd);
-	printf("%s", str);
+		str = get_next_line(fd);
+		printf("%s", str);
+		str = get_next_line(fd);
+		 printf("%s", str);
+//		str = get_next_line(fd);
+//		printf("%s", str);
 }
