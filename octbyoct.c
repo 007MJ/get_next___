@@ -6,7 +6,7 @@
 /*   By: mnshimiy <mnshimiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 12:00:49 by mnshimiy          #+#    #+#             */
-/*   Updated: 2023/01/23 12:30:31 by mnshimiy         ###   ########.fr       */
+/*   Updated: 2023/02/06 11:30:08 by mnshimiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <fcntl.h>
 #include <stdio.h>
 #include <stdlib.h>
-#define BUFFER_SIZE 2
+#define BUFFER_SIZE 1
 
 size_t	ft_strlen(const char *s)
 {
@@ -80,7 +80,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 
 	lengh1 = ft_strlen(s1);
 	lengh2 = ft_strlen(s2);
-	c_s1 = malloc ((lengh1 + lengh2) + 1 * sizeof(*s1));
+	c_s1 = malloc ((lengh1 + lengh2) + 1 * sizeof(char *));
 	if (!c_s1)
 		return (NULL);
 	ft_memmove((void *)c_s1, s1, lengh1);
@@ -95,23 +95,25 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	return (c_s1);
 }
 
-char	*get_next_line(fd)
+char	*get_next_line(int fd)
 {
 	static char	*buff;
-	char	*str;
-	int		i;
+	char		*str;
+	int			i;
 
-	i = 0;
+	i = 1;
 	buff = (char *)malloc(sizeof(char) * BUFFER_SIZE + 1);
 	str = (char *)malloc(sizeof(char) * BUFFER_SIZE + 1);
-	while (read(fd, buff, BUFFER_SIZE))
+	while (i > 0)
 	{
+		i = read(fd, buff, BUFFER_SIZE);
 		str = ft_strjoin(str, buff);
 		if (*buff == '\n')
 			return (str);
+		// if (i == 0)
+		// 	return (NULL);
 	}
-	//printf("%s\n", str);
-	return(NULL);
+	return (NULL);
 }
 
 int	main(void)
@@ -124,7 +126,7 @@ int	main(void)
 		str = get_next_line(fd);
 		printf("%s", str);
 		str = get_next_line(fd);
-		 printf("%s", str);
+		printf("%s", str);
 //		str = get_next_line(fd);
 //		printf("%s", str);
 }

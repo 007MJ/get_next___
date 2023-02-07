@@ -1,2 +1,4 @@
-1.comment utiliser la un descripteur de fichier (fd)
-2.comment utiliser read et malloc et free
+1.comment
+sdfdsfw45346345673467356345234
+sdfgsdfw5we423524352345s
+

@@ -1,0 +1,16 @@
+hello world
+jaime les patayes fsdfsdf asdasd asdasdasdasdasdasda sdasdasda sd
+
+BUFFER_SIZE = 5;
+temp[0, 1, 2, 3, 4]
+str =[0, 1, 2, 3, 4]
+
+read -> BUFFER_SIZE -> temp
+strjoin -> temp -> str
+str <- strjoin
+read -> BUFFER_SIZE -> temp
+strjoin -> temp -> str
+
+
+--------------------------------------------------------------------
+
