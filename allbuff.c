@@ -76,8 +76,9 @@ char	*ft_strjoin(char const *s1, char const *s2, int *stop)
 	while (i < lengh2)
 	{
 		c_s1[lengh1] = s2[i];
-		if (s2[i] == '\n')
+		if (c_s1[lengh1] == '\n')
 		{
+			// lengh1++;
 			*stop = 1;
 			break ;
 		}
@@ -90,25 +91,18 @@ char	*ft_strjoin(char const *s1, char const *s2, int *stop)
 
 char	*get_next_line(int fd)
 {
-	static char		*buff;
-	char			*str;
-	// int				*stop;
-	int				i;
+	char		*buff;
+	char		*str;
+	int			i;
 
 	i = 0;
-	// stop = &i;
 	buff = (char *)malloc(BUFFER_SIZE * sizeof(char) + 1);
 	str = (char *)malloc(BUFFER_SIZE * sizeof(char) + 1);
 	while (i != 1)
 	{
-		// printf("%d", i);
 		read(fd, buff, BUFFER_SIZE);
 		str = ft_strjoin(str, buff, &i);
-		// printf("%s", buff);
-		// break;
-		// printf("%d", 1);
 	}
-	// str[0] = '0';
 	return (str);
 }
 
@@ -118,6 +112,8 @@ int	main(void)
 	int		fd;
 
 	fd = open("note.txt", O_RDONLY);
+		str = get_next_line(fd);
+		printf("%s", str);
 		str = get_next_line(fd);
 		printf("%s", str);
 		str = get_next_line(fd);
