@@ -16,9 +16,26 @@ int	ft_strlen(char *str)
 	return (i);
 }
 
+void	ft_put_static(char *dst, char *src)
+{
+	int	i;
+	int	ii;
+
+	i = 0;
+	ii = 0;
+	dst = malloc(sizeof(char) * ft_strlen(src) + 1);
+	while (src[i])
+	{
+		dst[ii] = src[i];
+		i++;
+		ii++;
+	}
+	dst[i] = '\0';
+}
+
 char	*ft_strline(char *src)
 {
-	static char	*dst;
+	char		*dst;
 	int			i;
 	int			lenght;
 	char		*strline;
@@ -35,13 +52,12 @@ char	*ft_strline(char *src)
 			dst++;
 			lenght = ft_strlen(strline) - 1;
 		}
-		strline[lenght] = src [i];
-		if (src[i] == '\n')
-			return (strline);
+		strline[lenght] = src[i];
+		if (src[i - 1] == '\n')
 		i++;
 		lenght++;
 	}
-	return ("DON'T WORK !");
+	return ("Don't work !");
 }
 
 char	*get_next_line(int fd)
