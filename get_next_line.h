@@ -6,7 +6,7 @@
 /*   By: mnshimiy <mnshimiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 19:05:12 by mnshimiy          #+#    #+#             */
-/*   Updated: 2023/02/16 19:12:54 by mnshimiy         ###   ########.fr       */
+/*   Updated: 2023/02/17 20:08:19 by mnshimiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,19 @@
 # define GET_NEXT_LINE_H
 
 # include <unistd.h>
-# include <stdlib.h>
 # include <unistd.h>
+# include <fcntl.h>
+# include <stdio.h>
+# include <stdlib.h>
 
+# define BUFFER_SIZE 5
 
+int		ft_strlen(char *str);
+char	*ft_backslahn(char *slashstr);
+void	*ft_strcalloc(int count, size_t size);
+char	*ft_concante(char *dst, char *src);
+char	*get_next_line(int fd);
+char	*ft_onstatic(char *onstatic);
+void	print(char *str);
 
 #endif

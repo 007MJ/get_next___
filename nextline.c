@@ -47,24 +47,27 @@ char	*ft_backslah(char *str)
 		strslah[i] = str[i];
 		i++;
 	}
-	str = ft_onstatic(str, str + i);
+	//str = ft_onstatic(str, str + i);
 	return (strslah);
 }
 
 char	*get_next_line(int fd)
 {
-	static char	*dst;
-	char		*src;
+	static char	*dststatic;
+	char		*srcbuff;
 	char		*temp;
 
 	src = ft_strcalloc(BUFFER_SIZE, sizeof(char));
 	read(fd, src, BUFFER_SIZE);
-	temp = ft_concante(dst, src);
-	dst = temp;
-	ft_backslah(ft_backslah(dst))
-	return ();
-}
+	while (read(fd, src, BUFFER_SIZE))
+	{
+		temp = ft_concante(dststatic, srcbuff);
+		dst = temp;
+	}
 
+	free(temp);
+	return (ft_backslah(dst));
+}
 
 char	*ft_concante(char *dst, char *src)
 {
@@ -75,7 +78,7 @@ char	*ft_concante(char *dst, char *src)
 	i = 0;
 	j = 0;
 	tmp = ft_strcalloc(ft_strlen(src) + ft_strlen(dst) + 1, sizeof(char));
-	if (dst != NULL)
+	if (dststatic == null)
 	{
 		while (dst[i])
 		{
@@ -83,7 +86,7 @@ char	*ft_concante(char *dst, char *src)
 			i++;
 		}
 	}
-	while (src[j])
+	while (srcbuff[j])
 	{
 		tmp[i] = src[j];
 		i++;
@@ -92,6 +95,44 @@ char	*ft_concante(char *dst, char *src)
 	tmp[i] = '\0';
 	return (tmp);
 }
+
+// void	strcpy(char *dst, char *src)
+// {
+// 	int	i;
+
+// 	i = 0;
+// 	while (src[i])
+// 	{
+// 		dst[i] = src[i];
+// 		i++;
+// 	}
+// 	dst[i] = '\0';
+// }
+
+// char	*ft_concante(char *dst, char *tmp, char src)
+// {
+// 	int	i;
+// 	int	j;
+
+// 	i = 0;
+// 	j = 0;
+// 	if (dst != NULL)
+// 	{
+// 		while (dst[i])
+// 		{
+// 			tmp[i] = dst[i];
+// 			i++;
+// 		}
+// 	}
+// 	while (src[i])
+// 	{
+// 		tmp[i] = src[j];
+// 		i++;
+// 		j++;
+// 	}
+// 	tmp[i] = '\0';
+// 	return (tmp);
+// }
 
 int	main(void)
 {

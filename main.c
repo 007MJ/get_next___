@@ -1,31 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mnshimiy <mnshimiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/17 18:53:09 by mnshimiy          #+#    #+#             */
-/*   Updated: 2023/02/17 20:09:35 by mnshimiy         ###   ########.fr       */
+/*   Created: 2023/02/17 17:57:43 by mnshimiy          #+#    #+#             */
+/*   Updated: 2023/02/17 17:58:23 by mnshimiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char	*ft_onstatic(char *strstatic)
+int	main(void)
 {
-	char	*newstatic;
-	int		i;
+	char	*str;
+	int		fd;
 
-	i = 0;
-	newstatic = ft_strcalloc(ft_strlen(strstatic), sizeof(char));
-	while (strstatic[i])
-	{
-		newstatic[i] = strstatic[i];
-		i++;
-	}
-	//free(&strstatic);
-	newstatic[i] = '\0';
-	return (newstatic);
+	fd = open("note.txt", O_RDONLY);
+		str = get_next_line(fd);
+		printf("%s", str);
+		// str = get_next_line(fd);
+		// printf("%s", str);
+		// str = get_next_line(fd);
+		// printf("%s", str);
 }
-

@@ -2,7 +2,7 @@
 #include <fcntl.h>
 #include <stdio.h>
 #include <stdlib.h>
-#define BUFFER_SIZE 100
+#define BUFFER_SIZE 10
 
 int	ft_strlen(char *str)
 {
