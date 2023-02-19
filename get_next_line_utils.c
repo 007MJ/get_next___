@@ -6,7 +6,7 @@
 /*   By: mnshimiy <mnshimiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 18:53:09 by mnshimiy          #+#    #+#             */
-/*   Updated: 2023/02/17 20:09:35 by mnshimiy         ###   ########.fr       */
+/*   Updated: 2023/02/18 08:23:43 by mnshimiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ char	*ft_onstatic(char *strstatic)
 		i++;
 	}
 	//free(&strstatic);
+	print(newstatic);
 	newstatic[i] = '\0';
 	return (newstatic);
 }

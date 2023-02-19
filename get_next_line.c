@@ -6,7 +6,7 @@
 /*   By: mnshimiy <mnshimiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 13:07:12 by mnshimiy          #+#    #+#             */
-/*   Updated: 2023/02/17 20:07:19 by mnshimiy         ###   ########.fr       */
+/*   Updated: 2023/02/18 19:40:00 by mnshimiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,15 +37,17 @@ char	*ft_backslahn(char *str)
 	int		i;
 
 	i = 0;
+	print(str);
 	strslah = ft_strcalloc(ft_strlen(str), sizeof(char));
 	while (str[i])
 	{
 		strslah[i] = str[i];
+		//printf("%c", strslah[i]);
+		if (strslah[i] == '\n')
+			print("ici");
 		i++;
-		if (str[i] == '\n')
-			str = ft_onstatic(str + i);
 	}
-	return (strslah);
+	return ("////");
 }
 
 void	*ft_strcalloc(int count, size_t size)
@@ -81,29 +83,36 @@ char	*ft_concante(char *dst, char *src)
 			tmp[i] = dst[i];
 			i++;
 		}
+		free(dst);
 	}
 	while (src[j])
 	{
 		tmp[i] = src[j];
+		//printf("%c", src[i]);
+		if (src[j] == '\n')
+			break ;
 		i++;
 		j++;
 	}
 	tmp[i] = '\0';
-	return (ft_backslahn(tmp));
+	return (tmp);
 }
 
 char	*get_next_line(int fd)
 {
 	static char	*dst;
 	char		*src;
+	int			stop;
+	int		readbit;
 
-
+	stop = 1;
+	readbit = 1;
 	src = ft_strcalloc(BUFFER_SIZE, sizeof(char));
-	while (read(fd, src, BUFFER_SIZE))
+	while (readbit != 0)
 	{
+		readbit = read(fd, src, BUFFER_SIZE);
 		dst = ft_concante(dst, src);
 	}
-
-	free(dst);
+	//free(dst);
 	return (dst);
 }

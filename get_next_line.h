@@ -6,7 +6,7 @@
 /*   By: mnshimiy <mnshimiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 19:05:12 by mnshimiy          #+#    #+#             */
-/*   Updated: 2023/02/17 20:08:19 by mnshimiy         ###   ########.fr       */
+/*   Updated: 2023/02/18 18:38:28 by mnshimiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 
-# define BUFFER_SIZE 5
+# define BUFFER_SIZE 10
 
 int		ft_strlen(char *str);
 char	*ft_backslahn(char *slashstr);
