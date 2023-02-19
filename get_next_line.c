@@ -6,7 +6,7 @@
 /*   By: mnshimiy <mnshimiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 13:07:12 by mnshimiy          #+#    #+#             */
-/*   Updated: 2023/02/18 19:40:00 by mnshimiy         ###   ########.fr       */
+/*   Updated: 2023/02/19 18:32:01 by mnshimiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	*ft_strcalloc(int count, size_t size)
 	return (str);
 }
 
-char	*ft_concante(char *dst, char *src)
+char	*ft_concante(char *dst, char *src, int *stop)
 {
 	char	*tmp;
 	int		i;
@@ -87,10 +87,9 @@ char	*ft_concante(char *dst, char *src)
 	}
 	while (src[j])
 	{
+		if (src[j - 1] == '\n')
+			*stop = 0;
 		tmp[i] = src[j];
-		//printf("%c", src[i]);
-		if (src[j] == '\n')
-			break ;
 		i++;
 		j++;
 	}
@@ -111,8 +110,11 @@ char	*get_next_line(int fd)
 	while (readbit != 0)
 	{
 		readbit = read(fd, src, BUFFER_SIZE);
-		dst = ft_concante(dst, src);
+		dst = ft_concante(dst, src, &stop);
+		if (stop == 0)
+			break ;
 	}
+
 	//free(dst);
 	return (dst);
 }
