@@ -6,7 +6,7 @@
 /*   By: mnshimiy <mnshimiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 17:57:43 by mnshimiy          #+#    #+#             */
-/*   Updated: 2023/02/17 17:58:23 by mnshimiy         ###   ########.fr       */
+/*   Updated: 2023/02/21 20:33:50 by mnshimiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ int	main(void)
 	fd = open("note.txt", O_RDONLY);
 		str = get_next_line(fd);
 		printf("%s", str);
-		// str = get_next_line(fd);
-		// printf("%s", str);
+		str = get_next_line(fd);
+		printf("%s", str);
 		// str = get_next_line(fd);
 		// printf("%s", str);
 }

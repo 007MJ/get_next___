@@ -6,7 +6,7 @@
 /*   By: mnshimiy <mnshimiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 19:05:12 by mnshimiy          #+#    #+#             */
-/*   Updated: 2023/02/19 17:49:50 by mnshimiy         ###   ########.fr       */
+/*   Updated: 2023/02/21 20:31:34 by mnshimiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 
-# define BUFFER_SIZE 10
+# define BUFFER_SIZE 70
 
 int		ft_strlen(char *str);
 char	*ft_backslahn(char *slashstr);
@@ -28,5 +28,7 @@ char	*ft_concante(char *dst, char *src, int *stop);
 char	*get_next_line(int fd);
 char	*ft_onstatic(char *onstatic);
 void	print(char *str);
+char	*ft_srch_backn(char *src);
+char	*ft_strchr(char *s, int c);
 
 #endif

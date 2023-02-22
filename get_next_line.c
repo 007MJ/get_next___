@@ -6,7 +6,7 @@
 /*   By: mnshimiy <mnshimiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 13:07:12 by mnshimiy          #+#    #+#             */
-/*   Updated: 2023/02/19 18:32:01 by mnshimiy         ###   ########.fr       */
+/*   Updated: 2023/02/21 20:36:16 by mnshimiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,24 @@
 void	print(char *str)
 {
 	printf("%s", str);
+}
+
+char	*ft_strchr(char *s, int c)
+{
+	int	i;
+
+	i = 0;
+	while (s[i])
+	{
+		if (s[i] == (char )c)
+		{
+			return ((char *)s + i);
+		}
+		i++;
+	}
+	if ((char )c == '\0')
+		return ((char *)s + i);
+	return (0);
 }
 
 int	ft_strlen(char *str)
@@ -31,40 +49,24 @@ int	ft_strlen(char *str)
 	return (i);
 }
 
-char	*ft_backslahn(char *str)
-{
-	char	*strslah;
-	int		i;
-
-	i = 0;
-	print(str);
-	strslah = ft_strcalloc(ft_strlen(str), sizeof(char));
-	while (str[i])
-	{
-		strslah[i] = str[i];
-		//printf("%c", strslah[i]);
-		if (strslah[i] == '\n')
-			print("ici");
-		i++;
-	}
-	return ("////");
-}
-
 void	*ft_strcalloc(int count, size_t size)
 {
-	char	*str;
-	int		i;
+	char	*ptr;
 
-	i = 0;
-	str = malloc (count * sizeof(size));
-	if (str == NULL)
-		return (NULL);
-	while (str[i])
+	if (count == 0 && size == 0)
 	{
-		str[i] = 0;
-		i++;
+		count = 1;
+		size = 1;
 	}
-	return (str);
+	ptr = malloc(count * size);
+	if (!ptr)
+		return (0);
+	while (*ptr)
+	{
+		*ptr = 0;
+		ptr++;
+	}
+	return (ptr);
 }
 
 char	*ft_concante(char *dst, char *src, int *stop)
@@ -75,7 +77,7 @@ char	*ft_concante(char *dst, char *src, int *stop)
 
 	i = 0;
 	j = 0;
-	tmp = ft_strcalloc(ft_strlen(src) + ft_strlen(dst) + 1, sizeof(char));
+	tmp = malloc(ft_strlen(src) + ft_strlen(dst) * sizeof(char) + 1);
 	if (dst != NULL)
 	{
 		while (dst[i])
@@ -87,9 +89,9 @@ char	*ft_concante(char *dst, char *src, int *stop)
 	}
 	while (src[j])
 	{
-		if (src[j - 1] == '\n')
-			*stop = 0;
 		tmp[i] = src[j];
+		if (src[j] == '\n')
+			*stop = 0;
 		i++;
 		j++;
 	}
@@ -97,24 +99,43 @@ char	*ft_concante(char *dst, char *src, int *stop)
 	return (tmp);
 }
 
+char	*ft_srch_backn(char *src)
+{
+	int 	i;
+	int 	j;
+	char	*str;
+
+	i = 0;
+	j = 0;
+	while (src[i] != '\n')
+		i++;
+	str = malloc(sizeof(char) * i + 1);
+	while (j <= i)
+	{
+		str[j] = src[j];
+		j++;
+	}
+	return (str);
+}
+
 char	*get_next_line(int fd)
 {
 	static char	*dst;
 	char		*src;
 	int			stop;
-	int		readbit;
+	int			readbit;
 
 	stop = 1;
 	readbit = 1;
-	src = ft_strcalloc(BUFFER_SIZE, sizeof(char));
+	src = malloc(sizeof(char) * BUFFER_SIZE + 1);
 	while (readbit != 0)
 	{
 		readbit = read(fd, src, BUFFER_SIZE);
+		src[readbit] = 0;
 		dst = ft_concante(dst, src, &stop);
 		if (stop == 0)
 			break ;
 	}
-
-	//free(dst);
-	return (dst);
+	//dst = ft_strchr(dst, '\n');
+	return (ft_srch_backn(dst));
 }
