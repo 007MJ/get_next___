@@ -6,7 +6,7 @@
 /*   By: mnshimiy <mnshimiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 13:07:12 by mnshimiy          #+#    #+#             */
-/*   Updated: 2023/02/22 17:46:47 by mnshimiy         ###   ########.fr       */
+/*   Updated: 2023/02/23 17:03:37 by mnshimiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ char	*ft_strchr(char *s, int c)
 	{
 		if (s[i] == (char )c)
 		{
+			i = i + 1;
 			return ((char *)s + i);
 		}
 		i++;
@@ -69,7 +70,6 @@ void	*ft_strcalloc(int count, size_t size)
 	return (ptr);
 }
 
-
 char	*ft_concante(char *dst, char *src, int *stop)
 {
 	char	*tmp;
@@ -101,8 +101,8 @@ char	*ft_concante(char *dst, char *src, int *stop)
 
 char	*ft_srch_backn(char *src)
 {
-	int	i;
-	int	j;
+	int		i;
+	int		j;
 	char	*str;
 
 	i = 0;
@@ -116,8 +116,8 @@ char	*ft_srch_backn(char *src)
 		j++;
 	}
 	str[j] = '\0';
-	src = ft_backslahn(src, i);
-	printf("Dans la static apres lui avoir donne  : |%s|", src);
+	src = ft_memmove(src, src + i + 1, ft_strlen(src + i + 1));
+	//printf("Dans la static apres lui avoir donne  : |%s|", src);
 	return (str);
 }
 
@@ -130,17 +130,18 @@ char	*get_next_line(int fd)
 
 	stop = 1;
 	readbit = 1;
+	//printf("la static dans get_NEX: %s", dst);
 	src = malloc(sizeof(char) * BUFFER_SIZE + 1);
 	while (readbit != 0)
 	{
 		readbit = read(fd, src, BUFFER_SIZE);
-		printf(" le buffer dans le while : (%s)", src);
+		//printf(" le buffer dans le while : (%s)", src);
 		src[readbit] = 0;
 		dst = ft_concante(dst, src, &stop);
 		if (stop == 0)
-			break ;
+		{
+			return (ft_srch_backn(dst));
+		}
 	}
-	if (stop == 0)
-		return (ft_srch_backn(dst));
-	return ("We stil work on it :::::::::::::::::::::::::::::");
+	return (dst);
 }

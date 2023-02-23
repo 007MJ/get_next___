@@ -6,7 +6,7 @@
 /*   By: mnshimiy <mnshimiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 19:05:12 by mnshimiy          #+#    #+#             */
-/*   Updated: 2023/02/22 13:22:44 by mnshimiy         ###   ########.fr       */
+/*   Updated: 2023/02/23 17:01:47 by mnshimiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,9 @@ char	*ft_onstatic(char *onstatic);
 void	print(char *str);
 char	*ft_srch_backn(char *src);
 char	*ft_strchr(char *s, int c);
-char	*ft_backslahn(char *src, int i);
+char	*ft_afterslahn(char *src, int i);
+void	*ft_memmove(void *dst, const void *src, size_t len);
+void	*ft_memcpy(void *dst, const void *src, size_t n);
+//char	*ft_newstatic(char *dst, char *src);
 
 #endif
