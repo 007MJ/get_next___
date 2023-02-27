@@ -6,7 +6,7 @@
 /*   By: mnshimiy <mnshimiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 19:05:12 by mnshimiy          #+#    #+#             */
-/*   Updated: 2023/02/25 10:45:24 by mnshimiy         ###   ########.fr       */
+/*   Updated: 2023/02/27 11:25:35 by mnshimiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,19 +19,19 @@
 # include <stdio.h>
 # include <stdlib.h>
 
-# define BUFFER_SIZE 71
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 42
+# endif
 
 int		ft_strlen(char *str);
-void	*ft_strcalloc(int count, size_t size);
+void	*ft_strdup(char *str);
 char	*ft_concante(char *dst, char *src, int *stop);
 char	*get_next_line(int fd);
-char	*ft_onstatic(char *onstatic);
-void	print(char *str);
 char	*ft_srch_backn(char *src);
-char	*ft_strchr(char *s, int c);
 char	*ft_afterslahn(char *src, int i);
 char	*ft_memmove(char *dst, const char *src, size_t len);
 char	*ft_memcpy(char *dst, const char *src, size_t n);
+char	*strmalloc(int size);
 //char	*ft_newstatic(char *dst, char *src);
 
 #endif
